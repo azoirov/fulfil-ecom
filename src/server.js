@@ -20,7 +20,8 @@ fs.readdir(path.join(__dirname, "routes"), (err, files) => {
         files.forEach((file) => {
             const routePath = path.join(__dirname, "routes", file);
             const Route = require(routePath);
-            if (Route.path && Route.router) app.use(Route.path, Route.router);
+            if (Route.path && Route.router)
+                app.use(`/api/${Route.path}`, Route.router);
         });
     }
 });
