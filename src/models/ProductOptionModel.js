@@ -21,3 +21,4 @@ const ProductOptionSchema = new mongoose.Schema({
 });
 
 const product_options = mongoose.model("product_options", ProductOptionSchema);
+module.exports = product_options;

@@ -6,8 +6,8 @@ const ProductImageSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    images: {
-        type: Array,
+    image: {
+        type: String,
         required: true,
     },
     product_id: {
@@ -17,3 +17,4 @@ const ProductImageSchema = new mongoose.Schema({
 });
 
 const product_images = mongoose.model("product_images", ProductImageSchema);
+module.exports = product_images;
