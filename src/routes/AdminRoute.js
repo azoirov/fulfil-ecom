@@ -12,6 +12,7 @@ const {
     ProductsFilterGET,
     ProductsDELETE,
     ProductsPATCH,
+    ProductPATCH,
 } = require("../controllers/AdminController");
 const AdminMiddleware = require("../middlewares/AdminMiddleware");
 
@@ -50,6 +51,7 @@ router.post(
 router.get("/products/filter", AdminMiddleware, ProductsFilterGET);
 router.delete("/products/delete/:product_id", AdminMiddleware, ProductsDELETE);
 router.patch("/products/update/:product_id", AdminMiddleware, ProductsPATCH);
+router.patch("/products/type/:product_id", AdminMiddleware, ProductPATCH);
 module.exports = {
     path: "/admin",
     router,

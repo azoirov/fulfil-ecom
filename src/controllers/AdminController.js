@@ -10,7 +10,7 @@ const path = require("path");
 const ProductOptionValidation = require("../validations/ProductOptionValidation");
 const product_options = require("../models/ProductOptionModel");
 const ProductPatchValidation = require("../validations/ProductPatchValidation");
-//aggregate
+// aggregate
 module.exports = class AdminController {
     static async UsersGET(req, res) {
         try {
@@ -426,6 +426,52 @@ module.exports = class AdminController {
                 ok: true,
                 message: "updated",
                 product,
+            });
+        } catch (e) {
+            res.status(400).json({
+                ok: false,
+                message: e + "",
+            });
+        }
+    }
+
+    static async ProductPATCH(req, res) {
+        try {
+            let { type, cond } = req.query;
+
+            const { product_id } = req.params;
+
+            if (type !== "rec" && type !== "best") {
+                throw new Error("Type must be 'rec' or 'best'");
+            }
+
+            if (cond != "false" && cond != "true") {
+                throw new Error("cond must bu 'true' or 'false'");
+            }
+
+            if (type == "rec") {
+                await products.findOneAndUpdate(
+                    {
+                        product_id,
+                    },
+                    {
+                        is_rec: cond == "true" ? true : false,
+                    }
+                );
+            } else if (type == "best") {
+                await products.findOneAndUpdate(
+                    {
+                        product_id,
+                    },
+                    {
+                        is_best: cond == "true" ? true : false,
+                    }
+                );
+            }
+
+            res.status(200).json({
+                ok: true,
+                message: "UPDATED",
             });
         } catch (e) {
             res.status(400).json({
