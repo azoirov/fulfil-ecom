@@ -14,6 +14,7 @@ const {
     ProductsPATCH,
     ProductPATCH,
 } = require("../controllers/AdminController");
+const { OrderPATCH } = require("../controllers/ProductsController");
 const AdminMiddleware = require("../middlewares/AdminMiddleware");
 
 const router = require("express").Router();
@@ -52,6 +53,8 @@ router.get("/products/filter", AdminMiddleware, ProductsFilterGET);
 router.delete("/products/delete/:product_id", AdminMiddleware, ProductsDELETE);
 router.patch("/products/update/:product_id", AdminMiddleware, ProductsPATCH);
 router.patch("/products/type/:product_id", AdminMiddleware, ProductPATCH);
+router.patch("/order/:order_id", AdminMiddleware, OrderPATCH);
+
 module.exports = {
     path: "/admin",
     router,

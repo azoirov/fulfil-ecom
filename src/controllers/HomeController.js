@@ -12,14 +12,12 @@ module.exports = async (req, res) => {
             is_best: true,
         });
 
-        console.log(recProducts, bestSellers);
         let randomRec = [];
 
         while (randomRec.length < 13 && recProducts.length > 0) {
             let randomNumber = Math.round(Math.random() * recProducts.length);
             let product = recProducts.pop(randomNumber);
             randomRec.push(product);
-            console.log("randomRec", randomRec);
         }
 
         let randomBest = [];
@@ -28,7 +26,6 @@ module.exports = async (req, res) => {
             let randomNumber = Math.round(Math.random() * bestSellers.length);
             let product = bestSellers.pop(randomNumber);
             randomBest.push(product);
-            console.log("randomBest", randomBest);
         }
 
         res.status(200).json({
